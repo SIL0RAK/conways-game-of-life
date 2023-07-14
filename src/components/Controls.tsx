@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMatrixContext } from './MatricContext';
-import { MatrixSize } from '../config';
+import { MatrixSize, Speed } from '../config';
 
 const Controlls: React.FC = () => {
     const { 
@@ -21,7 +21,7 @@ const Controlls: React.FC = () => {
     }
 
     const handleHeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Number(event.target.value);
+        const value = Number(event.target.value) || MatrixSize.MinHeight;
         
         if (!Number.isNaN(value)) {
             changeMatrixDimensions(matrix[0].length, value)
@@ -29,7 +29,7 @@ const Controlls: React.FC = () => {
     }
 
     const handleWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Number(event.target.value);
+        const value = Number(event.target.value) || MatrixSize.MinWidth;
 
         if (!Number.isNaN(value)) {
             changeMatrixDimensions(value, matrix.length);
@@ -41,8 +41,8 @@ const Controlls: React.FC = () => {
             <div>
                 {`speed: ${speed}`}
                 <input
-                    min={50}
-                    max={1500}
+                    min={Speed.Min}
+                    max={Speed.Max}
                     type="range"
                     value={speed}
                     onChange={handleSpeedChange}
@@ -59,7 +59,7 @@ const Controlls: React.FC = () => {
                 <input
                     value={matrix[0].length}
                     type="number"
-                    min={5}
+                    min={MatrixSize.MinWidth}
                     max={MatrixSize.MaxWidth}
                     onChange={handleWidthChange}
                 />
@@ -68,7 +68,7 @@ const Controlls: React.FC = () => {
                 <input
                     value={matrix.length}
                     type="number"
-                    min={5}
+                    min={MatrixSize.MinHeight}
                     max={MatrixSize.MaxHeight}
                     onChange={handleHeightChange}
                 />

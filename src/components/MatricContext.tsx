@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import mutateMatrix from '../utils/mutateMatrix';
 import live from '../utils/live';
+import { MatrixSize, Speed } from '../config';
 
 interface IMatrixContext {
   matrix: boolean[][];
@@ -20,7 +21,7 @@ interface IMatrixContext {
 
 const MatrixContext = createContext<IMatrixContext>({
   matrix: [],
-  speed: 1000,
+  speed: Speed.Default,
   running: false,
   setSpeed: () => {},
   setMatrix:() => {},
@@ -36,11 +37,11 @@ interface IMatrixContextProvider {
 }
 
 export const MatrixContextProvider: React.FC<IMatrixContextProvider> = ({
-  matrixWidth = 10,
-  matrixHeigt = 10,
+  matrixWidth = MatrixSize.DefaultWidth,
+  matrixHeigt = MatrixSize.DefaultHeight,
   children
 }) => {
-  const [speed, setSpeed] = useState(1000);
+  const [speed, setSpeed] = useState(Speed.Default);
   const [running, setRunning] = useState(false);
   const [matrix, setMatrix] = useState(
     Array(matrixHeigt).fill(Array(matrixWidth).fill(false))
