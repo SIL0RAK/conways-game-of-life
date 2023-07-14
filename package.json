@@ -5,6 +5,7 @@
   "keywords": ["react", "Game of life"],
   "main": "src/index.tsx",
   "author": "Karolis Krusinskas",
+  "homepage": "./",
   "dependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
